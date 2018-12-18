@@ -99,7 +99,7 @@ $(function() {
         });
 
         it('should have at least single entry element in .feed container', (done) => {
-            expect($('.feed').children()[0].classList.contains('entry-link')).toBe(true);
+            expect($('.feed .entry').length).toBeGreaterThan(0);
             done();
         })
     });
@@ -116,11 +116,11 @@ $(function() {
             loadFeed(0, () => {
                 // this callback function is called only when async function loadFeed(0) returns success or error (see definition of loadFeed)
                 // ... and save its first entry href to compare with second feed
-                firstHref = $('.feed').children()[0].href;
+                firstHref = $('.feed .entry-link')[0].href;
                 // when first feed loadFeed call is finished (it is: either with success or error, cause this callback only then is called ),
                 // load second feed and save its first entry href
                 loadFeed(1, () => {
-                    secondHref = $('.feed').children()[0].href;
+                    secondHref = $('.feed .entry-link')[0].href;
                     // only here, when second feed is loaded we signal jasmine to check expectation
                     done();
                 })
